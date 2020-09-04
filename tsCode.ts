@@ -19,8 +19,20 @@ type FunctionPropertyNames<T> = {
   [K in keyof T]: T[K] extends Function ? K : never;
 }[keyof T];
 
-type Contect<T> = {
-  [P in FunctionPropertyNames<T>]: T[P];
+type TransformMethod<T> = T extends (
+  payload: Promise<infer T>
+) => Promise<Action<infer U>>
+  ? (input: T) => Action<U>
+  : T extends (action: Action<infer T>) => Action<infer U>
+  ? (action: T) => Action<U>
+  : never;
+
+type AsyncMethod<T, U> = (input: Promise<T>) => Promise<Action<U>>;
+
+type PickFunctionProperty<T> = Pick<T, FunctionPropertyNames<T>>;
+
+type ConnectType<T> = {
+  [P in keyof T]: TransformMethod<T[P]>;
 };
 
-type M = Contect<Module>;
+type Connect = (module: Module) => ConnectType<PickFunctionProperty<Module>>;
