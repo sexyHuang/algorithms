@@ -18,7 +18,7 @@
         "--allow-write",
         "--allow-net",
         "--unstable",
-        "./MyCircularQuene.ts"
+        "./cardQuestion.ts"
       ],
       "port": 9229,
       "console": "integratedTerminal"

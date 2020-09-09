@@ -71,7 +71,7 @@ const TransferMap = new Map<State, Map<CharType, State>>([
     new Map<CharType, State>([
       [CharType.CHAR_NUMBER, State.STATE_FLOAT],
       [CharType.CHAR_EXP, State.STATE_EXP],
-      [CharType.CHAR_SPACE, State.STATE_END],
+      [CharType.CHAR_SPACE, State.STATE_END],   
     ]),
   ],
   [

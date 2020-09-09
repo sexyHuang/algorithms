@@ -154,3 +154,17 @@ const p = new MyPromise<string>((resolve) => {
 });
 
 p.then(console.log);
+
+function topKFrequent(nums: number[], k: number): number[] {
+  const map = new Map<number, number>();
+  nums.forEach((val) => {
+    map.set(val, (map.get(val) ?? 0) + 1);
+  });
+  const quene: number[] = [];
+  for (let [val, times] of map) {
+    if (quene.length >= k && (map.get(quene[quene.length - 1]) ?? 0) < times)
+      quene.pop();
+    quene.push(val);
+  }
+  return quene;
+}
