@@ -18,7 +18,11 @@
         "--allow-write",
         "--allow-net",
         "--unstable",
+<<<<<<< HEAD
         "./cardQuestion.ts"
+=======
+        "./topKFrequent.ts"
+>>>>>>> 3b5cb51a88cfcc4ce4ad3c9d9d5700751d0d636d
       ],
       "port": 9229,
       "console": "integratedTerminal"
