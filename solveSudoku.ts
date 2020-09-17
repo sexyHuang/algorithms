@@ -1,6 +1,50 @@
 /**
- Do not return anything, modify board in-place instead.
- keywords: 回溯、优化空间（位）、剪支（先选择可能性小的格子）
+ * 基础递归逻辑
+ *  fake code
+ * dfs(row,column){
+ *    if(Cell[row][column] is not exist) return true;
+ *    if(Cell[row][column] not empty) dfs(nextRow,nextColumn);
+ *    for(form 1 to 9){
+ *        if(is illegal value){
+ *            continue;
+ *        }
+ *        fill cell with this value;
+ *        if(dfs(nextRow,nextColumn)) return true;
+ *        else {
+ *              clean fill record;
+ *        }
+ *    }
+ *    return false
+ * }
+ *
+ *
+ * 优化目标
+ * 1. 每次先检索可能性最少的空格
+ *    1-1. 管理一个空格Set，存放现有的空格的idx
+ *    1-2. 实现一个可以查询空格现有可能性的方法
+ *
+ * 2. 二进制存数据
+ *    2-1. 每一行、列、格用一个9位二进制Bn表示，B[n]意义为该维度上数n+1是否填入；
+ *    2-2. 空格Set用8位二进制数存放idx，高位为row，低位为column（反转亦可）；
+ *
+ * 3. 递归逻辑
+ * fake code
+ *    dfs(){
+ *        if(no EmptyCell) return true;
+ *        get min possibility cell;
+ *        while(has possibility){
+ *            fill cell with this possibility;
+ *            if(dfs()){
+ *                return true
+ *            } else {
+ *                disable this possibility;
+ *                clean fill record;
+ *            }
+ *
+ *        }
+ *        return false;
+ *    }
+ *
  */
 const EMPTY_STR = '.';
 const MAX_IDX = 8;

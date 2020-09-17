@@ -33,3 +33,15 @@ function minDepth(root: TreeNode | null): number {
   }
   return 1;
 }
+
+function invertTree(root: TreeNode | null): TreeNode | null {
+  if (!root) return root;
+  const queue = [root];
+  while (queue.length) {
+    const node = queue.shift()!;
+    [node.right, node.left] = [node.left, node.right];
+    node.right && queue.push(node.right);
+    node.left && queue.push(node.left);
+  }
+  return root;
+}
