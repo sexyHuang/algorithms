@@ -11,5 +11,3 @@ function minimumTotal(triangle: number[][]): number {
 const triangle: number[][] = [];
 
 console.log(minimumTotal(triangle));
-
-new Promise()

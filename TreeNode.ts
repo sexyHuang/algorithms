@@ -45,3 +45,37 @@ function invertTree(root: TreeNode | null): TreeNode | null {
   }
   return root;
 }
+
+class MNode {
+  val: number;
+  left: MNode | null;
+  right: MNode | null;
+  next: MNode | null;
+  constructor(val?: number, left?: MNode, right?: MNode, next?: MNode) {
+    this.val = val === undefined ? 0 : val;
+    this.left = left === undefined ? null : left;
+    this.right = right === undefined ? null : right;
+    this.next = next === undefined ? null : next;
+  }
+}
+function connect(root: MNode | null): MNode | null {
+  let head = root;
+  while (head?.left) {
+    let d = new MNode();
+    let curr: MNode | null = head;
+    while (curr?.left) {
+      d.next = curr.left;
+      curr.left.next = curr.right!;
+      d = curr.right!;
+      curr = curr.next;
+    }
+    head = head.left;
+  }
+  return root;
+}
+const root = new MNode(
+  1,
+  new MNode(2, new MNode(4), new MNode(5)),
+  new MNode(3, new MNode(6), new MNode(7))
+);
+console.log(connect(root));

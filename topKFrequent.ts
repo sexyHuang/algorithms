@@ -12,11 +12,12 @@ function topKFrequent(nums: number[], k: number): number[] {
       quene.offer(val);
     }
   }
+
   return quene.toArrayInOrder().reverse();
 }
 
-const nums = [1, 1, 2, 2, 2, 3],
-  k = 2;
+const nums = [1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5],
+  k = 5;
 console.log(topKFrequent(nums, k));
 
 export default {};

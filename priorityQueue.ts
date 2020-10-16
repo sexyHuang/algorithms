@@ -68,3 +68,11 @@ export default class PriorityQueue<T> {
     compare && (this.compare = compare);
   }
 }
+
+const arr = [1, 2, 3, 4, 7];
+
+const quene = new PriorityQueue<number>();
+for (let num of arr) quene.offer(num);
+quene.offer(5);
+console.log(quene.toArrayInOrder());
+debugger;
