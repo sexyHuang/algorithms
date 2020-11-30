@@ -1,10 +1,14 @@
 export default class PriorityQueue<T> {
   private queue: T[] = [];
+
+  constructor(compare?: (a: T, b: T) => number) {
+    compare && (this.compare = compare);
+  }
   private compare: (a: T, b: T) => number = (a, b) => {
-    if (typeof a === 'string' && typeof b === 'string') {
+    if (typeof a === "string" && typeof b === "string") {
       return a.localeCompare(b);
-    } else if (typeof a === 'number' && typeof b === 'number') return a - b;
-    else throw Error('请自行实现');
+    } else if (typeof a === "number" && typeof b === "number") return a - b;
+    else throw Error("请自行实现");
   };
   private isLess(i: number, j: number) {
     const { compare, queue } = this;
@@ -15,7 +19,7 @@ export default class PriorityQueue<T> {
     [queue[i], queue[j]] = [queue[j], queue[i]];
   }
   private swim(k: number) {
-    while (k > 0 && this.isLess(Math.floor(k / 2), k)) {
+    while (k > 0 && this.isLess(Math.floor((k - 1) / 2), k)) {
       const upIdx = Math.floor(k / 2);
       this.exch(upIdx, k);
       k = upIdx;
@@ -41,7 +45,7 @@ export default class PriorityQueue<T> {
   }
   poll() {
     const { queue } = this;
-    if (!queue.length) throw new Error('Priority queue underflow');
+    if (!queue.length) throw new Error("Priority queue underflow");
 
     this.exch(0, queue.length - 1);
     const max = queue.pop()!;
@@ -64,15 +68,4 @@ export default class PriorityQueue<T> {
     this.queue = _queue;
     return res;
   }
-  constructor(compare?: (a: T, b: T) => number) {
-    compare && (this.compare = compare);
-  }
 }
-
-const arr = [1, 2, 3, 4, 7];
-
-const quene = new PriorityQueue<number>();
-for (let num of arr) quene.offer(num);
-quene.offer(5);
-console.log(quene.toArrayInOrder());
-debugger;

@@ -9,20 +9,11 @@
 每一层递归都要返回当前根结点root；
  */
 
-export class TreeNode {
-  val: number;
-  left: TreeNode | null;
-  right: TreeNode | null;
-  constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
-    this.val = val === undefined ? 0 : val;
-    this.left = left === undefined ? null : left;
-    this.right = right === undefined ? null : right;
-  }
-}
+import TreeNode from "./TreeNode.ts";
 
 type BuildTree = (preorder: number[], inorder: number[]) => TreeNode | null;
 
-const buildTree: BuildTree = (preorder, inorder) => {
+export const buildTree: BuildTree = (preorder, inorder) => {
   if (!preorder.length || !inorder.length) return null;
   const rootValue = preorder.shift();
 

@@ -9,7 +9,7 @@ export default class TreeNode {
   }
 }
 
-function minDepth(root: TreeNode | null): number {
+export function minDepth(root: TreeNode | null): number {
   if (!root) return 0;
   const quene = [
     {
@@ -34,7 +34,7 @@ function minDepth(root: TreeNode | null): number {
   return 1;
 }
 
-function invertTree(root: TreeNode | null): TreeNode | null {
+export function invertTree(root: TreeNode | null): TreeNode | null {
   if (!root) return root;
   const queue = [root];
   while (queue.length) {
@@ -58,7 +58,7 @@ class MNode {
     this.next = next === undefined ? null : next;
   }
 }
-function connect(root: MNode | null): MNode | null {
+export function connect(root: MNode | null): MNode | null {
   let head = root;
   while (head?.left) {
     let d = new MNode();
@@ -73,9 +73,3 @@ function connect(root: MNode | null): MNode | null {
   }
   return root;
 }
-const root = new MNode(
-  1,
-  new MNode(2, new MNode(4), new MNode(5)),
-  new MNode(3, new MNode(6), new MNode(7))
-);
-console.log(connect(root));
