@@ -1,4 +1,4 @@
-import ListNode from "./ListNode.ts";
+import ListNode from './dataStructure/ListNode.ts';
 
 const insertBehind = (head: ListNode, target: ListNode) => {
   [head.next, target.next] = [target, head.next];

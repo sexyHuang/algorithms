@@ -1,4 +1,4 @@
-import PriorityQueue from './priorityQueue.ts';
+import PriorityQueue from './dataStructure/PriorityQueue.ts';
 
 type CharCount = {
   char: string;

@@ -1,10 +1,10 @@
-import Trie from './Trie.ts';
+import Trie from './dataStructure/Trie.ts';
 
 type Respace = (dictionary: string[], sentence: string) => number;
 
 const respace: Respace = (dictionary, sentence) => {
   const trie = new Trie();
-  dictionary.forEach((word) => trie.insert(word));
+  dictionary.forEach(word => trie.insert(word));
   const dp: number[] = [0];
   for (let i = 0; i < sentence.length; i++) {
     dp[i + 1] = dp[i] + 1;

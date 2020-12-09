@@ -1,5 +1,5 @@
-import TreeNode from "./TreeNode.ts";
-import { buildTree } from "./buildTree.ts";
+import TreeNode from './dataStructure/TreeNode.ts';
+import { buildTree } from './buildTree.ts';
 const root = buildTree([1, 2, 4, 5, 3, 6], [4, 2, 5, 1, 6, 3]);
 
 const isExistNode = (root: TreeNode | null, idx: number) => {
@@ -7,7 +7,7 @@ const isExistNode = (root: TreeNode | null, idx: number) => {
   let bitMask = 2 ** (Number(idx).toString(2).length - 1);
   let res: TreeNode | null = head;
   while (res && bitMask > 0) {
-    const nodeStr = (idx & bitMask) > 0 ? "right" : "left";
+    const nodeStr = (idx & bitMask) > 0 ? 'right' : 'left';
     res = res[nodeStr];
     bitMask >>= 1;
   }

@@ -1,5 +1,5 @@
-import ListNode from './ListNode.ts';
-import TreeNode from './TreeNode.ts';
+import ListNode from './dataStructure/ListNode.ts';
+import TreeNode from './dataStructure/TreeNode.ts';
 //中序
 function inorderTraversal(root: TreeNode | null): number[] {
   const queue: TreeNode[] = [];

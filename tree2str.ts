@@ -1,13 +1,13 @@
-import TreeNode from "./TreeNode.ts";
+import TreeNode from './dataStructure/TreeNode.ts';
 
 function tree2str(t: TreeNode | null): string {
   const bfs = (root: TreeNode | null): string => {
-    if (!root) return "";
+    if (!root) return '';
     const { val, left, right } = root;
     const leftStr = bfs(left);
     const rightStr = bfs(right);
-    return `${val}${rightStr || leftStr ? `(${leftStr})` : ""}${
-      rightStr ? `(${rightStr})` : ""
+    return `${val}${rightStr || leftStr ? `(${leftStr})` : ''}${
+      rightStr ? `(${rightStr})` : ''
     }`;
   };
   return bfs(t);

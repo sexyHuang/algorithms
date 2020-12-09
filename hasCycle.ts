@@ -1,4 +1,4 @@
-import ListNode from './ListNode.ts';
+import ListNode from './dataStructure/ListNode.ts';
 
 const hasCycle = (head: ListNode) => {
   let slow: ListNode | null = head;

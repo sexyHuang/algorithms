@@ -1,7 +1,7 @@
-import PriorityQueue from './priorityQueue.ts';
+import PriorityQueue from './dataStructure/PriorityQueue.ts';
 function topKFrequent(nums: number[], k: number): number[] {
   const map = new Map<number, number>();
-  nums.forEach((val) => {
+  nums.forEach(val => {
     map.set(val, (map.get(val) ?? 0) + 1);
   });
   const quene = new PriorityQueue<number>((a, b) => map.get(b)! - map.get(a)!);
