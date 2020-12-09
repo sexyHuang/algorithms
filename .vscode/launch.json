@@ -18,7 +18,7 @@
         "--allow-write",
         "--allow-net",
         "--unstable",
-        "./reorganizeString.ts"
+        "./743.网络延迟时间.ts"
       ],
       "port": 9229,
       "console": "integratedTerminal"

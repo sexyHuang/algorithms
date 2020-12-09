@@ -1,4 +1,4 @@
-import PriorityQueue from "./priorityQueue.ts";
+import PriorityQueue from './priorityQueue.ts';
 
 type CharCount = {
   char: string;
@@ -9,7 +9,7 @@ function reorganizeString(S: string): string {
   const sLength = S.length;
   const maxCharCount = Math.ceil(sLength / 2);
   const charCountMap: { [key: string]: number } = {};
-  let res = "";
+  let res = '';
   if (sLength < 2) return S;
   for (let i = 0; i < sLength; i++) {
     const count = (charCountMap[S[i]] ?? 0) + 1;
@@ -17,7 +17,7 @@ function reorganizeString(S: string): string {
     charCountMap[S[i]] = count;
   }
   const maxQueue = new PriorityQueue<CharCount>((a, b) => {
-    return a.count - b.count;
+    return b.count - a.count;
   });
   Object.entries(charCountMap).forEach(([char, count]) => {
     maxQueue.offer({ char, count });
@@ -25,18 +25,18 @@ function reorganizeString(S: string): string {
   while (maxQueue.size) {
     const s1 = maxQueue.poll();
     const s2 = maxQueue.size ? maxQueue.poll() : void 0;
-    res += `${s1.char}${s2?.char ?? ""}`;
+    res += `${s1.char}${s2?.char ?? ''}`;
 
     if (s1.count - 1 > 0) {
       maxQueue.offer({
         ...s1,
-        count: s1.count - 1,
+        count: s1.count - 1
       });
     }
     if (s2 && s2.count - 1 > 0) {
       maxQueue.offer({
         ...s2,
-        count: s2.count - 1,
+        count: s2.count - 1
       });
     }
   }
@@ -44,6 +44,6 @@ function reorganizeString(S: string): string {
 }
 
 const S =
-  "tndsewnllhrtwsvxenkscbivijfqnysamckzoyfnapuotmdexzkkrpmppttficzerdndssuveompqkemtbwbodrhwsfpbmkafpwyedpcowruntvymxtyyejqtajkcjakghtdwmuygecjncxzcxezgecrxonnszmqmecgvqqkdagvaaucewelchsmebikscciegzoiamovdojrmmwgbxeygibxxltemfgpogjkhobmhwquizuwvhfaiavsxhiknysdghcawcrphaykyashchyomklvghkyabxatmrkmrfsppfhgrwywtlxebgzmevefcqquvhvgounldxkdzndwybxhtycmlybhaaqvodntsvfhwcuhvuccwcsxelafyzushjhfyklvghpfvknprfouevsxmcuhiiiewcluehpmzrjzffnrptwbuhnyahrbzqvirvmffbxvrmynfcnupnukayjghpusewdwrbkhvjnveuiionefmnfxao";
+  'tndsewnllhrtwsvxenkscbivijfqnysamckzoyfnapuotmdexzkkrpmppttficzerdndssuveompqkemtbwbodrhwsfpbmkafpwyedpcowruntvymxtyyejqtajkcjakghtdwmuygecjncxzcxezgecrxonnszmqmecgvqqkdagvaaucewelchsmebikscciegzoiamovdojrmmwgbxeygibxxltemfgpogjkhobmhwquizuwvhfaiavsxhiknysdghcawcrphaykyashchyomklvghkyabxatmrkmrfsppfhgrwywtlxebgzmevefcqquvhvgounldxkdzndwybxhtycmlybhaaqvodntsvfhwcuhvuccwcsxelafyzushjhfyklvghpfvknprfouevsxmcuhiiiewcluehpmzrjzffnrptwbuhnyahrbzqvirvmffbxvrmynfcnupnukayjghpusewdwrbkhvjnveuiionefmnfxao';
 
 console.log(reorganizeString(S));
