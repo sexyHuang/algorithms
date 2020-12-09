@@ -18,7 +18,7 @@
         "--allow-write",
         "--allow-net",
         "--unstable",
-        "./743.网络延迟时间.ts"
+        "./241.为运算表达式设计优先级.ts"
       ],
       "port": 9229,
       "console": "integratedTerminal"

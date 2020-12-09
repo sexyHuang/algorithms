@@ -1,3 +1,6 @@
+/**
+ * 优先队列
+ */
 export default class PriorityQueue<T> {
   private queue: T[] = [];
 
@@ -10,7 +13,7 @@ export default class PriorityQueue<T> {
     } else if (typeof a === 'number' && typeof b === 'number') return a - b;
     else throw Error('请自行实现');
   };
-  private isMax(i: number, j: number) {
+  private isMore(i: number, j: number) {
     const { compare, queue } = this;
     return compare(queue[i], queue[j]) > 0;
   }
@@ -18,41 +21,63 @@ export default class PriorityQueue<T> {
     const { queue } = this;
     [queue[i], queue[j]] = [queue[j], queue[i]];
   }
+  /**
+   * 上升
+   * @param k
+   */
   private swim(k: number) {
-    while (k > 0 && this.isMax(Math.floor((k - 1) / 2), k)) {
+    while (k > 0) {
       const upIdx = Math.floor((k - 1) / 2);
+      if (!this.isMore(upIdx, k)) break;
       this.exch(upIdx, k);
       k = upIdx;
     }
   }
+  /**
+   * queue size
+   */
   get size() {
     return this.queue.length;
   }
+  /**
+   * 下沉
+   * @param k
+   */
   private sink(k: number) {
     const { queue } = this;
-    while (2 * k + 1 < queue.length) {
+    const qLength = queue.length;
+    while (true) {
       let downIdx = 2 * k + 1;
-      if (downIdx < queue.length - 1 && this.isMax(downIdx, downIdx + 1))
+      if (downIdx >= qLength) break;
+      if (downIdx < qLength - 1 && this.isMore(downIdx, downIdx + 1))
         downIdx += 1;
-      if (!this.isMax(k, downIdx)) break;
+      if (!this.isMore(k, downIdx)) break;
       this.exch(k, downIdx);
       k = downIdx;
     }
   }
+  /**
+   * 插入一个元素
+   * @param value
+   */
   offer(value: T) {
     this.queue.push(value);
     this.swim(this.queue.length - 1);
   }
+  /**
+   * 推出队首元素
+   */
   poll() {
     const { queue } = this;
     if (!queue.length) throw new Error('Priority queue underflow');
-
     this.exch(0, queue.length - 1);
-    const max = queue.pop()!;
+    const top = queue.pop()!;
     this.sink(0);
-
-    return max;
+    return top;
   }
+  /**
+   * 返回队首元素
+   */
   peek() {
     return this.queue[0];
   }
