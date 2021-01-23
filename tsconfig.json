@@ -1,30 +1,21 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "outDir": "build",
-    "module": "esnext",
-    "target": "es5",
-    "lib": ["esnext", "dom"],
-    "sourceMap": true,
-    "allowJs": true,
-    "jsx": "react",
-    "moduleResolution": "node",
-    "rootDir": ".",
+    // 指定 ECMAScript 目标版本 "ES3"（默认）， "ES5"， "ES6" / "ES2015"， "ES2016"， "ES2017" 或 "ESNext"。
+    "target": "esnext",
+    "module": "CommonJS",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    // 构建的目标代码删除所有注释，除了以 /!* 开头的版权信息
+    "removeComments": true,
+    // 生成相应的 .d.ts 文件
+    "declaration": true,
+    // 启用所有严格类型检查选项。启用 --strict 相当于启用 --noImplicitAny, --noImplicitThis, --alwaysStrict， --strictNullChecks, --strictFunctionTypes 和 --strictPropertyInitialization
+    "strict": true,
+    // 禁止对同一个文件的不一致的引用
     "forceConsistentCasingInFileNames": true,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noImplicitAny": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "strictNullChecks": true,
-    "importHelpers": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "experimentalDecorators": true,
-    "downlevelIteration": true,
-    "allowSyntheticDefaultImports": true,
-    "paths": {
-      "@/*": ["src/*"]
-    }
+    // 报错时不生成输出文件
+    "noEmitOnError": true,
+    "sourceMap": true
   },
-  "exclude": ["node_modules", "dist", "build", "mock"]
+  "exclude": ["node_modules", "dist"],
+  "compileOnSave": false
 }

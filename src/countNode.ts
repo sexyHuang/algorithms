@@ -1,5 +1,5 @@
-import TreeNode from './dataStructure/TreeNode.ts';
-import { buildTree } from './buildTree.ts';
+import TreeNode from './dataStructure/TreeNode';
+import { buildTree } from './buildTree';
 const root = buildTree([1, 2, 4, 5, 3, 6], [4, 2, 5, 1, 6, 3]);
 
 const isExistNode = (root: TreeNode | null, idx: number) => {

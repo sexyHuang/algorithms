@@ -1,4 +1,4 @@
-import Trie from './dataStructure/Trie.ts';
+import Trie from './dataStructure/Trie';
 
 type Respace = (dictionary: string[], sentence: string) => number;
 

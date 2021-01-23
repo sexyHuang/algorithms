@@ -18,7 +18,7 @@
         "--allow-write",
         "--allow-net",
         "--unstable",
-        "./sort.ts"
+        "./483.最小好进制.ts"
       ],
       "port": 9229,
       "console": "integratedTerminal"

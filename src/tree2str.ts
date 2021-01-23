@@ -1,4 +1,4 @@
-import TreeNode from './dataStructure/TreeNode.ts';
+import TreeNode from './dataStructure/TreeNode';
 
 function tree2str(t: TreeNode | null): string {
   const bfs = (root: TreeNode | null): string => {

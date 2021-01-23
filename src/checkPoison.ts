@@ -4,7 +4,7 @@
  *     给10只小鼠和7秒，判断哪瓶有毒。
  */
 
-import sleep from './utils/sleep.ts';
+import sleep from './utils/sleep';
 
 const TOTAL = 1000;
 const TARGET_INDEX = Math.floor(Math.random() * TOTAL);

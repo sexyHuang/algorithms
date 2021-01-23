@@ -9,7 +9,7 @@
 每一层递归都要返回当前根结点root；
  */
 
-import TreeNode from './dataStructure/TreeNode.ts';
+import TreeNode from './dataStructure/TreeNode';
 
 type BuildTree = (preorder: number[], inorder: number[]) => TreeNode | null;
 

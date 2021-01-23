@@ -1,4 +1,4 @@
-import DLinkedNode from './dataStructure/DLinkedNode.ts';
+import DLinkedNode from './dataStructure/DLinkedNode';
 class LRUCache {
   capacity: number;
   head: DLinkedNode = new DLinkedNode();

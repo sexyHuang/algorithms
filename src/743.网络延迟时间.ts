@@ -4,7 +4,7 @@
  * [743] 网络延迟时间
  */
 
-import PriorityQueue from './dataStructure/PriorityQueue.ts';
+import PriorityQueue from './dataStructure/PriorityQueue';
 // @lc code=start
 function networkDelayTime(times: number[][], N: number, K: number): number {
   type Connect = [v: number, w: number];

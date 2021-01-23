@@ -1,0 +1,19 @@
+{
+  "name": "algorithms",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:sexyHuang/algorithms.git",
+  "author": "huangjianyong <huangjianyong@tuzhanai.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/mathjs": "^6.0.11",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3"
+  },
+  "scripts": {
+    "dev": "ts-node src/483.最小好进制.ts"
+  },
+  "dependencies": {
+    "mathjs": "^9.0.0"
+  }
+}

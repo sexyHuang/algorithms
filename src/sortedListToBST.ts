@@ -1,5 +1,5 @@
-import TreeNode from './dataStructure/TreeNode.ts';
-import ListNode from './dataStructure/ListNode.ts';
+import TreeNode from './dataStructure/TreeNode';
+import ListNode from './dataStructure/ListNode';
 
 function sortedListToBST(head: ListNode | null): TreeNode | null {
   const dfs = (
