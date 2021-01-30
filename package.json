@@ -11,7 +11,7 @@
     "typescript": "^4.1.3"
   },
   "scripts": {
-    "dev": "ts-node src/483.最小好进制.ts"
+    "dev": "ts-node src/1017.负二进制转换.ts"
   },
   "dependencies": {
     "mathjs": "^9.0.0"
