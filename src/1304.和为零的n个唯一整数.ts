@@ -13,7 +13,6 @@ function sumZero(n: number): number[] {
     i -= 1;
   }
   return res;
-}
-// @lc code=end
+} // @lc code=end
 
 console.log(sumZero(4));
