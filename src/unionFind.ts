@@ -17,7 +17,6 @@ export default class UnionFind<T> {
     if (node.parent !== node) node.parent = this.getParent(node.parent);
     return node.parent;
   }
-
   union(pX: Node<T>, pY: Node<T>) {
     if (pX === pY) return;
     if (pX.rank < pY.rank) {
