@@ -1,4 +1,5 @@
-import { TreeNode } from './buildTree';
+import TreeNode from './dataStructure/TreeNode';
+
 function generateTrees(n: number): Array<TreeNode | null> {
   const dfs = (start: number, end: number): (TreeNode | null)[] => {
     const allTrees: TreeNode[] = [];

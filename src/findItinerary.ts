@@ -6,7 +6,7 @@ function findItinerary(tickets: string[][]): string[] {
     }
     map.get(start)!.push(end);
   });
-  map.forEach((arr) => arr.sort());
+  map.forEach(arr => arr.sort());
   const list: string[] = [];
   const dfs = (start: string) => {
     while (map.get(start)?.length) {
@@ -21,7 +21,7 @@ function findItinerary(tickets: string[][]): string[] {
 const tickets = [
   ['JFK', 'KUL'],
   ['JFK', 'NRT'],
-  ['NRT', 'JFK'],
+  ['NRT', 'JFK']
 ];
 
 console.log(findItinerary(tickets));

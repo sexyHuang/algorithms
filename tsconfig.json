@@ -14,8 +14,9 @@
     "forceConsistentCasingInFileNames": true,
     // 报错时不生成输出文件
     "noEmitOnError": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "skipLibCheck": true
   },
-  "exclude": ["node_modules", "dist"],
+
   "compileOnSave": false
 }
