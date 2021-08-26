@@ -15,7 +15,8 @@
     // 报错时不生成输出文件
     "noEmitOnError": true,
     "sourceMap": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "outDir": "./out"
   },
 
   "compileOnSave": false
