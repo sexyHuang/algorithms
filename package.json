@@ -14,6 +14,8 @@
     "dev": "ts-node src/1017.负二进制转换.ts"
   },
   "dependencies": {
-    "mathjs": "^9.0.0"
+    "mathjs": "^9.0.0",
+    "matrix-js": "^1.6.0",
+    "ml-matrix": "^6.8.0"
   }
 }
