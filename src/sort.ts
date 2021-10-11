@@ -108,16 +108,42 @@ function heapSort(arr: number[]) {
   }
 }
 
+function mergeSort(arr: number[]) {
+  const t: number[] = [];
+  let revertPairCounts = 0;
+  function merge(l: number, r: number) {
+    const mid = Math.floor((l + r) / 2);
+    if (l >= r) return;
+    merge(l, mid);
+    merge(mid + 1, r);
+    let i = l;
+    let ll = l;
+    let rl = mid + 1;
+    while (i <= r) {
+      if ((ll <= mid && arr[ll] <= arr[rl]) || rl > r) {
+        t[i++] = arr[ll++];
+      } else {
+        t[i++] = arr[rl++];
+        revertPairCounts += mid - ll + 1;
+      }
+    }
+    for (let i = l; i <= r; i++) {
+      arr[i] = t[i];
+    }
+  }
+  merge(0, arr.length - 1);
+}
+
 const arr = Array.from(
   {
-    length: 100
+    length: 10
   },
   () => Math.floor(10000 * Math.random())
 );
 
 console.log(arr);
 
-heapSort(arr);
+mergeSort(arr);
 console.log(arr);
 
 export default {};
