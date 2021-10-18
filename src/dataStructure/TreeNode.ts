@@ -14,8 +14,8 @@ export function minDepth(root: TreeNode | null): number {
   const quene = [
     {
       node: root,
-      depth: 1,
-    },
+      depth: 1
+    }
   ];
   while (quene.length) {
     const { node, depth } = quene.shift()!;
@@ -23,12 +23,12 @@ export function minDepth(root: TreeNode | null): number {
     node.left &&
       quene.push({
         node: node.left,
-        depth: depth + 1,
+        depth: depth + 1
       });
     node.right &&
       quene.push({
         node: node.right,
-        depth: depth + 1,
+        depth: depth + 1
       });
   }
   return 1;
@@ -72,4 +72,23 @@ export function connect(root: MNode | null): MNode | null {
     head = head.left;
   }
   return root;
+}
+
+export function genTreeFromHeap(heap: (number | null)[]) {
+  const nodeList: (TreeNode | null)[] = [];
+
+  for (let [i, val] of heap.entries()) {
+    if (val === null) continue;
+    const node = new TreeNode(val);
+    nodeList[i] = node;
+    const parentNode = nodeList[Math.floor((i - 1) / 2)];
+    if (!parentNode) continue;
+
+    if (i % 2) {
+      parentNode!.left = node;
+    } else {
+      parentNode!.right = node;
+    }
+  }
+  return nodeList[0]!;
 }
