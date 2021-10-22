@@ -1,3 +1,5 @@
+import DancingLinksX from './dancingLinks';
+
 /**
  * 基础递归逻辑
  *  fake code
@@ -127,7 +129,7 @@ function solveSudoku(board: string[][]): void {
       -1,
       -1,
       0,
-      Infinity,
+      Infinity
     ];
     for (let idxBits of emptyCells) {
       const [rowIdxs, columnIdx] = bitToIdxs(idxBits);
@@ -138,7 +140,7 @@ function solveSudoku(board: string[][]): void {
           rowIdxs,
           columnIdx,
           possibleBit,
-          count,
+          count
         ];
       }
     }
@@ -180,6 +182,42 @@ function solveSudoku(board: string[][]): void {
   fillNext();
 }
 
+function solveSudokuWithDLX(board: string[][]) {
+  const solver = new DancingLinksX();
+  solver.build(9 ** 3, 9 ** 2 * 4);
+  function getId(row: number, column: number, num: number) {
+    return row * 9 ** 2 + column * 9 + num;
+  }
+  function insert(row: number, column: number, num: number) {
+    const id = getId(row, column, num);
+    const room = Math.floor(row / 3) * 3 + Math.floor(column / 3);
+    solver.insert(id, row * 9 + num);
+    solver.insert(id, 81 + column * 9 + num);
+    solver.insert(id, 81 * 2 + room * 9 + num);
+    solver.insert(id, 81 * 3 + row * 9 + column + 1);
+  }
+
+  for (let [row, vector] of board.entries()) {
+    for (let [column, value] of vector.entries()) {
+      for (let i = 1; i <= 9; i++) {
+        if (value !== '.' && Number(value) !== i) continue;
+        insert(row, column, i);
+      }
+    }
+  }
+  solver.dance();
+  const ans = Array.from({ length: 9 }, () =>
+    Array.from({ length: 9 }, () => 0)
+  );
+  solver.answer.forEach(rowId => {
+    const row = Math.floor((rowId - 1) / 81);
+    const column = Math.floor((rowId - 1) / 9) % 9;
+    const num = ((rowId - 1) % 9) + 1;
+    ans[row][column] = num;
+  });
+  return ans;
+}
+
 const board = [
   ['5', '3', '.', '.', '7', '.', '.', '.', '.'],
   ['6', '.', '.', '1', '9', '5', '.', '.', '.'],
@@ -189,8 +227,12 @@ const board = [
   ['7', '.', '.', '.', '2', '.', '.', '.', '6'],
   ['.', '6', '.', '.', '.', '.', '2', '8', '.'],
   ['.', '.', '.', '4', '1', '9', '.', '.', '5'],
-  ['.', '.', '.', '.', '8', '.', '.', '7', '9'],
+  ['.', '.', '.', '.', '8', '.', '.', '7', '9']
 ];
 
-solveSudoku(board);
+/* solveSudoku(board);
 console.table(board);
+ */
+
+console.table(board);
+console.table(solveSudokuWithDLX(board));
