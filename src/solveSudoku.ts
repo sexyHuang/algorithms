@@ -1,4 +1,4 @@
-import DancingLinksX from './dancingLinks';
+import DancingLinksX from './dataStructure/dancingLinks';
 
 /**
  * 基础递归逻辑
