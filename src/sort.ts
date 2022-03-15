@@ -141,9 +141,24 @@ const arr = Array.from(
   () => Math.floor(10000 * Math.random())
 );
 
-console.log(arr);
-
-mergeSort(arr);
-console.log(arr);
+function merge(arrA: number[], arrB: number[]) {
+  const res: number[] = [];
+  const [lengthA, lengthB] = [arrA.length, arrB.length];
+  let [aPointer, bPointer] = [0, 0];
+  while (aPointer < lengthA && bPointer < lengthB) {
+    if (arrA[aPointer] < arrB[bPointer]) {
+      res.push(arrA[aPointer++]);
+    } else res.push(arrB[bPointer++]);
+  }
+  while (aPointer < lengthA) {
+    res.push(arrA[aPointer++]);
+  }
+  while (bPointer < lengthB) {
+    res.push(arrB[bPointer++]);
+  }
+  return res;
+}
 
 export default {};
+
+console.log(merge([1, 3, 5], [2, 4, 6, 8]));

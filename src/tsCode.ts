@@ -1,3 +1,5 @@
+import { Jsonify, LiteralUnion } from 'type-fest';
+
 interface Module {
   count: number;
   message: string;
@@ -53,10 +55,9 @@ type Simplify<T> = {
 type SetOptional<T extends object, Keys extends keyof T> = Simplify<
   {
     [K in Exclude<keyof T, Keys>]: K extends Keys ? never : T[K];
-  } &
-    {
-      [K in Keys]?: T[K];
-    }
+  } & {
+    [K in Keys]?: T[K];
+  }
 >;
 type Obj = {
   a: number;
@@ -151,3 +152,22 @@ type Curry<
 > = P extends [infer Arg0, infer Arg1, ...infer Args]
   ? (arg: Arg0) => Curry<(arg: Arg1, ...args: Args) => R>
   : F;
+
+type MyReadonly<T extends Object> = {
+  readonly [key in keyof T]: T[key];
+};
+
+const obj = {
+  num: 22,
+  str: 'ssss',
+  timeValue: new Date(),
+  o: {
+    ddd: true
+  }
+};
+
+const timeJson = JSON.parse(JSON.stringify(obj)) as Jsonify<typeof obj>;
+
+type Pet = LiteralUnion<'dog' | 'cat', string>;
+
+type E = (string | number) & Record<never, never>;

@@ -150,6 +150,11 @@ ml-matrix@^6.8.0:
   dependencies:
     ml-array-rescale "^1.3.5"
 
+postcss-px2vp@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.npmmirror.com/postcss-px2vp/-/postcss-px2vp-1.1.4.tgz#9da8efb8c625380cf84274aad3e2519580e068c9"
+  integrity sha512-Ooo8KyqJuYH7jWjSHpJiITgTLz0SJYIAxS7mU1P8JWzcUwM3n/Jt2GzWdA1sMjnzArtUNClkvETXn3YqoobD/A==
+
 seedrandom@^3.0.5:
   version "3.0.5"
   resolved "https://registry.npm.taobao.org/seedrandom/download/seedrandom-3.0.5.tgz#54edc85c95222525b0c7a6f6b3543d8e0b3aa0a7"
@@ -178,15 +183,20 @@ ts-node@^10.2.1:
     make-error "^1.1.1"
     yn "3.1.1"
 
+type-fest@^2.12.0:
+  version "2.12.0"
+  resolved "https://registry.npmmirror.com/type-fest/-/type-fest-2.12.0.tgz#ce342f58cab9114912f54b493d60ab39c3fc82b6"
+  integrity sha512-Qe5GRT+n/4GoqCNGGVp5Snapg1Omq3V7irBJB3EaKsp7HWDo5Gv2d/67gfNyV+d5EXD+x/RF5l1h4yJ7qNkcGA==
+
 typed-function@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npm.taobao.org/typed-function/download/typed-function-2.0.0.tgz#15ab3825845138a8b1113bd89e60cd6a435739e8"
   integrity sha1-Fas4JYRROKixETvYnmDNakNXOeg=
 
-typescript@^4.4.3:
-  version "4.4.3"
-  resolved "https://registry.nlark.com/typescript/download/typescript-4.4.3.tgz?cache=0&sync_timestamp=1631862948892&other_urls=https%3A%2F%2Fregistry.nlark.com%2Ftypescript%2Fdownload%2Ftypescript-4.4.3.tgz#bdc5407caa2b109efd4f82fe130656f977a29324"
-  integrity sha1-vcVAfKorEJ79T4L+EwZW+XeikyQ=
+typescript@^4.6.2:
+  version "4.6.2"
+  resolved "https://registry.npmmirror.com/typescript/-/typescript-4.6.2.tgz#fe12d2727b708f4eef40f51598b3398baa9611d4"
+  integrity sha512-HM/hFigTBHZhLXshn9sN37H085+hQGeJHJ/X7LpBWLID/fbc2acUMfU+lGD98X81sKP+pFa9f0DZmCwB9GnbAg==
 
 yn@3.1.1:
   version "3.1.1"
