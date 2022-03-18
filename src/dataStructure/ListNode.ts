@@ -17,3 +17,14 @@ export class DListNode<T extends any> {
     this.next = next;
   }
 }
+
+export function genListNode(arr: number[]) {
+  const sentinel = new ListNode();
+  let tail = sentinel;
+  for (let val of arr) {
+    const node = new ListNode(val);
+    tail.next = node;
+    tail = tail.next;
+  }
+  return sentinel.next;
+}

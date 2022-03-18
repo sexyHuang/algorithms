@@ -33,20 +33,19 @@ function copyRandomList(head: Node | null): Node | null {
     if (random) {
       curr.next!.random = random!.next;
     }
-    const next = curr.next!.next;
 
-    curr = next;
+    curr = curr.next!.next;
   }
 
-  const cloneHead = new Node();
-  let cloneCurr = cloneHead;
   curr = head;
+  const cloneHead = head?.next ?? null;
   while (curr) {
-    cloneCurr.next = curr.next!;
-    cloneCurr = cloneCurr.next;
+    const cloneNode = curr.next!;
     curr.next = curr.next!.next;
+    curr = curr.next;
+    cloneNode.next = curr?.next ?? null;
   }
-  return cloneHead.next;
+  return cloneHead;
 }
 // @lc code=end
 
