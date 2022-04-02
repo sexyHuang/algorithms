@@ -10,7 +10,7 @@ function exist(board: string[][], word: string): boolean {
     [-1, 0],
     [0, -1],
     [1, 0],
-    [0, 1],
+    [0, 1]
   ];
 
   const dfs = (rowIdx: number, columnIdx: number, wordIdx: number): boolean => {
@@ -30,3 +30,62 @@ function exist(board: string[][], word: string): boolean {
     column.some((_, columnIdx) => dfs(rowIdx, columnIdx, 0))
   );
 }
+
+interface PromiseFn {
+  (...res: any[]): Promise<any>;
+}
+
+const retryRequest =
+  <T extends PromiseFn>(promiseFn: T, retryTimes = 3) =>
+  async (...rest: Parameters<T>): Promise<Awaited<ReturnType<T>>> => {
+    let err;
+    for (let i = 0; i < retryTimes; i++) {
+      try {
+        return await promiseFn(...rest);
+      } catch (e) {
+        err = e;
+      }
+    }
+    throw err;
+  };
+
+let i = 0;
+function r(a: string) {
+  return new Promise<string>((resolve, reject) => {
+    setTimeout(() => {
+      if (i++ < 2) {
+        reject(new Error('test err'));
+      } else {
+        resolve(a);
+      }
+    }, 2000);
+  });
+}
+
+retryRequest(r)('aa').then(console.log).catch(console.error);
+
+const retryDecorator = (retryTimes = 3) => {
+  return (_: Object, __: string | symbol, descriptor: PropertyDescriptor) => {
+    const fn = descriptor.value;
+    descriptor.value = (...args: any[]) => {
+      return retryRequest(fn, retryTimes)(...args);
+    };
+  };
+};
+class Test {
+  @retryDecorator()
+  r(a: string) {
+    return new Promise<string>((resolve, reject) => {
+      setTimeout(() => {
+        if (i++ < 2) {
+          reject(new Error('test err'));
+        } else {
+          resolve(a);
+        }
+      }, 2000);
+    });
+  }
+}
+
+const t = new Test();
+t.r('aaa');

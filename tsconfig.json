@@ -15,6 +15,7 @@
     // 报错时不生成输出文件
     "noEmitOnError": true,
     "sourceMap": true,
+    "experimentalDecorators": true,
     "skipLibCheck": true,
     "outDir": "./out"
   },
