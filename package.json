@@ -21,7 +21,8 @@
     "typescript": "^4.6.3"
   },
   "scripts": {
-    "dev": "ts-node src/1017.负二进制转换.ts"
+    "dev": "ts-node src/1017.负二进制转换.ts",
+    "test": "yarn jest"
   },
   "dependencies": {
     "mathjs": "^9.0.0",

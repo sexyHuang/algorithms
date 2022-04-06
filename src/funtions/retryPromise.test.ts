@@ -1,9 +1,5 @@
 import sleep from '../utils/sleep';
-import {
-  repeatWhenError,
-  repeatWhenErrorInRxjs,
-  retryWhenError
-} from './retryPromise';
+import { repeatWhenErrorInRxjs, retryWhenError } from './retryPromise';
 
 function errorMock(errorTimes = 3) {
   let i = 0;
@@ -75,6 +71,8 @@ class Test {
 }
 
 it('Decorator: retry promise resolve', () => {
+  expect.assertions(2);
+
   const test = new Test(retryTimes);
   const fn = jest.fn();
 
@@ -86,6 +84,8 @@ it('Decorator: retry promise resolve', () => {
 });
 
 it('Decorator: retry promise reject', () => {
+  expect.assertions(2);
+
   const test = new Test(retryTimes + 1);
   const fn = jest.fn();
 
