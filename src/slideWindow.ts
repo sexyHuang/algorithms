@@ -38,7 +38,7 @@ function tempUpArr(temps: number[]) {
   const monotoneQueue: number[] = [];
   const result: number[] = Array.from(
     {
-      length: temps.length,
+      length: temps.length
     },
     () => 0
   );
@@ -58,3 +58,13 @@ const temperatures = [73, 74, 75, 71, 69, 72, 76, 73];
 console.log(minSlidingWindow([1, -1], 1));
 
 console.log(tempUpArr(temperatures));
+
+type A = { d?: number; c?: { e?: number } | null };
+
+function test(a: A) {
+  const { c = {} } = a;
+}
+
+test({ d: 1 });
+
+export {};
