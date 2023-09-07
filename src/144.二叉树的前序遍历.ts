@@ -1,10 +1,8 @@
-import { buildTree } from './buildTree';
 import TreeNode from './dataStructure/TreeNode';
-
 /*
- * @lc app=leetcode.cn id=145 lang=typescript
+ * @lc app=leetcode.cn id=144 lang=typescript
  *
- * [145] 二叉树的后序遍历
+ * [144] 二叉树的前序遍历
  */
 
 // @lc code=start
@@ -22,34 +20,18 @@ import TreeNode from './dataStructure/TreeNode';
  * }
  */
 
-function postorderTraversal(root: TreeNode | null): number[] {
+function preorderTraversal(root: TreeNode | null): number[] {
   let node = root;
   const queue: TreeNode[] = [];
   const res: number[] = [];
-  let prev: TreeNode | null;
   while (queue.length || node) {
     while (node) {
+      res.push(node.val);
       queue.push(node);
       node = node.left;
     }
-    if (queue.length) {
-      node = queue.pop()!;
-      if (node.right && node.right != prev!) {
-        queue.push(node);
-        node = node.right;
-      } else {
-        res.push(node.val);
-        prev = node;
-        node = null;
-      }
-    }
+    node = queue.pop()!.right ?? null;
   }
   return res;
 }
-
 // @lc code=end
-
-const root = buildTree([1, 2, 4, 5, 3, 6], [4, 2, 5, 1, 6, 3]);
-
-console.log(postorderTraversal(root));
-debugger;

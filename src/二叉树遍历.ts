@@ -1,6 +1,19 @@
 import ListNode from './dataStructure/ListNode';
 import TreeNode from './dataStructure/TreeNode';
-//中序
+
+/**
+ * 三种顺序迭代的入栈顺序都是相同的，都是先把root的所有最左侧节点入栈，再用栈顶节点的右节点作为新的root节点进行下一轮入栈迭代；
+ * 不同的是出栈的时机和节点取值的时机
+ * 前序遍历：节点在开始遍历其右节点树前出栈，在入栈时取值；
+ * 中序遍历：节点在开始遍历其右节点树前出栈，在出栈时取值；
+ * 后序遍历：节点在结束遍历其右节点树后出栈，在出栈时取值。
+ */
+
+/**
+ * 中序遍历-迭代
+ * @param root
+ * @returns
+ */
 function inorderTraversal(root: TreeNode | null): number[] {
   const queue: TreeNode[] = [];
   let node = root;
@@ -19,7 +32,11 @@ function inorderTraversal(root: TreeNode | null): number[] {
   }
   return result;
 }
-//递归版本
+/**
+ * 中序遍历-递归
+ * @param root
+ * @returns
+ */
 function inorderTraversalV2(root: TreeNode | null): number[] {
   const res: number[] = [];
   const dfs = (root: TreeNode | null) => {
@@ -32,8 +49,11 @@ function inorderTraversalV2(root: TreeNode | null): number[] {
   return res;
 }
 
-//morris遍历
-
+/**
+ * 中序-morris遍历
+ * @param root
+ * @returns
+ */
 function inorderTraversalMorris(root: TreeNode | null): number[] {
   let x = root;
   const res = [];
@@ -117,18 +137,37 @@ function preorderTraversalMorris(root: TreeNode | null): number[] {
 
 //dfs
 function postorderTraversal(root: TreeNode | null): number[] {
-  if (!root) return [];
-  const queue: TreeNode[] = [root];
-
-  const result: number[] = [];
-  while (queue.length) {
-    const node = queue.pop()!;
-    result.unshift(node.val);
-
-    node.left && queue.push(node.left);
-    node.right && queue.push(node.right);
+  let node = root;
+  const queue: TreeNode[] = [];
+  const res: number[] = [];
+  let prev: TreeNode | null;
+  while (queue.length || node) {
+    //把所有主节点入栈
+    while (node) {
+      queue.push(node);
+      node = node.left;
+    }
+    if (queue.length) {
+      // 推出栈顶节点
+      node = queue.pop()!;
+      // 当前节点如果有未遍历的右节点
+      if (node.right && node.right != prev!) {
+        // 栈顶节点重新入栈
+        queue.push(node);
+        // 以右节点作为子树的根节点继续下一轮迭代
+        node = node.right;
+      }
+      // 否则
+      else {
+        // 组织返回结果
+        res.push(node.val);
+        // 记录为已遍历，因为栈中只会用到上次的已遍历节点，所以用一个常量记录即可
+        prev = node;
+        node = null;
+      }
+    }
   }
-  return result;
+  return res;
 }
 
 class BSTIterator {

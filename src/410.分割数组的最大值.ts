@@ -33,9 +33,9 @@ function splitArray(nums: number[], k: number): number {
         if (m <= j) {
           continue;
         }
-        max = Math.max(dp[m], sum(nums, m + 1, i));
+        min = Math.min(min, Math.max(dp[m], sum(nums, m + 1, i)));
       }
-      min = Math.min(min);
+      dp[i] = min;
     }
   }
 }
