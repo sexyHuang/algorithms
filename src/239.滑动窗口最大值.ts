@@ -1,3 +1,10 @@
+/*
+ * @lc app=leetcode.cn id=239 lang=typescript
+ *
+ * [239] 滑动窗口最大值
+ */
+
+// @lc code=start
 class MyPriorityQueue<T> {
   private queue: T[] = [];
   private compare: (a: T, b: T) => number;
@@ -57,47 +64,32 @@ class MyPriorityQueue<T> {
     this.sink(0);
     return result;
   }
+  peek() {
+    return this.queue[0];
+  }
   get size() {
     return this.queue.length;
   }
 }
 
-class Graph {
-  private adj: [u: number, w: number][][];
-
-  constructor(n: number, edges: number[][]) {
-    this.adj = Array.from({ length: n }).map(() => []);
-    edges.forEach(edge => {
-      this.addEdge(edge);
-    });
+function maxSlidingWindow(nums: number[], k: number): number[] {
+  const res: number[] = [];
+  const queue = new MyPriorityQueue<[number, number]>((a, b) =>
+    a[0] !== b[0] ? b[0] - a[0] : a[0] - b[0]
+  );
+  for (let i = 0; i < k; i++) {
+    queue.offer([nums[i], i]);
   }
-
-  addEdge([v, u, w]: number[]): void {
-    this.adj[v].push([u, w]);
-  }
-
-  shortestPath(node1: number, node2: number): number {
-    const visitedSet = new Set<number>();
-    const dis = Array.from({ length: this.adj.length }).map((_, i) => {
-      if (i === node1) return 0;
-      return Number.MAX_SAFE_INTEGER;
-    });
-    const queue = new MyPriorityQueue<[u: number, dis: number]>((a, b) => {
-      return a[1] - b[1];
-    });
-    queue.offer([node1, 0]);
-    while (queue.size) {
-      const [v, disV] = queue.poll()!;
-      if (v === node2) return disV;
-      if (visitedSet.has(v)) continue;
-      visitedSet.add(v);
-      for (const [u, w] of this.adj[v]) {
-        if (dis[u] > disV + w) {
-          dis[u] = disV + w;
-          queue.offer([u, dis[u]]);
-        }
-      }
+  res.push(queue.peek()[0]);
+  for (let i = k; i < nums.length; i++) {
+    while (queue.peek()?.[1] <= i - k) {
+      queue.poll();
     }
-    return -1;
+    queue.offer([nums[i], i]);
+    res.push(queue.peek()[0]);
   }
+  return res;
 }
+// @lc code=end
+console.log(maxSlidingWindow([9, 10, 9, -7, -4, -8, 2, -6], 5));
+export {};
